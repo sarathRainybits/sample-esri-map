@@ -1,34 +1,40 @@
-<table>
+<table style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
+    <tr>
+        <td><span (click)="viewDetails = !viewDetails">click here to <span *ngIf="!viewDetails" >show</span> <span *ngIf="viewDetails" >hide</span> details</span></td>
+      </tr>
   <tr>
-      <td>
-          <div>
-            <app-esri-map 
-            [gisLayer]="gisLayer" 
-            [pipeLayer]="pipeLayer" 
-            [extentArray]="extentArray" 
-            [spatialReference]="spatialReference"
-            [center]="mapCenter" 
-            [basemap]="basemapType" 
-            [zoom]="mapZoomLevel" 
-            (mapLoaded)="mapLoadedEvent($event)"
-            (queryPipesResponse)="queryPipesResponse($event)">
-            </app-esri-map>
-          </div>
-        </td>
-    <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
+    <td>
+      <div>
+        <app-esri-map 
+        [gisLayer]="gisLayer" 
+        [pipeLayer]="pipeLayer" 
+        [extentArray]="extentArray" 
+        [spatialReference]="spatialReference"
+        [center]="mapCenter" 
+        [basemap]="basemapType" 
+        [zoom]="mapZoomLevel" 
+        (mapLoaded)="mapLoadedEvent($event)"
+        (queryPipesResponse)="queryPipesResponse($event)">
+        </app-esri-map>
+      </div>
+    </td>
+    <td *ngIf="viewDetails" > 
       <p>click anywhere on the map to query a random pipe (Query Task)
         <br>or<br>
         click on the outage icon to get description (Identify Task)
         <br>
         <br>
-        API Reference : <a target="_blank" href="https://developers.arcgis.com/javascript/latest/api-reference/index.html">https://developers.arcgis.com/javascript/latest/api-reference/index.html</a>
+        API Reference : <a target="_blank" href="https://developers.arcgis.com/javascript/latest/api-reference/index.html">click here</a>
         <br>
-        Loader : <a target="_blank" href="https://github.com/Esri/esri-loader">https://github.com/Esri/esri-loader</a>
+        Loader : <a target="_blank" href="https://github.com/Esri/esri-loader">click here</a>
         <br>
-        CSS : <a target="_blank" href="https://js.arcgis.com/4.9/esri/css/main.css">https://js.arcgis.com/4.9/esri/css/main.css</a>
+        CSS : <a target="_blank" href="https://js.arcgis.com/4.9/esri/css/main.css">click here</a>
         <br>
-       Angular CLI Sample : <a target="_blank" href="https://github.com/Esri/angular-cli-esri-map">https://github.com/Esri/angular-cli-esri-map</a>
-     </p>
+        Angular CLI Sample : <a target="_blank" href="https://github.com/Esri/angular-cli-esri-map">click here</a>
+        <br>
+        sample-esri-map source code : <a target="_blank" href="https://github.com/sarathRainybits/sample-esri-map">click here</a>
+      </p>
+
     </td>
 
   </tr>

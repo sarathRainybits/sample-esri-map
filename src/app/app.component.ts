@@ -7,6 +7,7 @@ import { Component, Input, EventEmitter } from '@angular/core';
 })
 export class AppComponent {
   // Set our map properties
+  viewDetails = false;
   extentArray = ["-13215046.250", "4017332.161", "-13147657.669", "4076317.766"];
   mapCenter = [-122.4194, 37.7749];
   basemapType = 'topo';
