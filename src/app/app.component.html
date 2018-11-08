@@ -1,13 +1,15 @@
+<p>click on map to query a random pipe or click on outage icon to get description</p>
 <div>
-  <app-esri-map
-  [gisLayer] = "gisLayer"
-  [pipeLayer] = "pipeLayer"
-  [extentArray] = "extentArray"
-  [spatialReference] = "spatialReference"
-  [center]="mapCenter"
-  [basemap]="basemapType"
-  [zoom]="mapZoomLevel"
-  (mapLoaded)="mapLoadedEvent($event)">
-</app-esri-map>
-</div>
+  <app-esri-map [gisLayer]="gisLayer" 
+  [pipeLayer]="pipeLayer" 
+  [extentArray]="extentArray"
+  [spatialReference]="spatialReference"
+  [center]="mapCenter" 
+  [basemap]="basemapType" 
+  [zoom]="mapZoomLevel" 
+  (mapLoaded)="mapLoadedEvent($event)"
+  (queryPipesResponse)= "queryPipesResponse($event)"
+  >
+  </app-esri-map>
 
+</div>

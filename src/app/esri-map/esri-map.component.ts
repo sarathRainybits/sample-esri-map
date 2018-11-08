@@ -8,6 +8,7 @@ import esri = __esri;
 })
 export class EsriMapComponent implements OnInit {
 
+  @Output() queryPipesResponse = new EventEmitter<string>();
   @Output() mapLoaded = new EventEmitter<boolean>();
   @ViewChild('mapViewNode') private mapViewEl: ElementRef;
 
@@ -91,7 +92,7 @@ export class EsriMapComponent implements OnInit {
 
   async initializeMap() {
     try {
-      const [EsriMap, EsriMapView, TileLayer, Extent, SpatialReference, FeatureLayer, IdentifyTask, IdentifyParameters] = await loadModules([
+      const [EsriMap, EsriMapView, TileLayer, Extent, SpatialReference, FeatureLayer, IdentifyTask, IdentifyParameters, QueryTask, Query] = await loadModules([
         'esri/Map',
         'esri/views/MapView',
         'esri/layers/TileLayer',
@@ -99,7 +100,9 @@ export class EsriMapComponent implements OnInit {
         'esri/geometry/SpatialReference',
         'esri/layers/FeatureLayer',
         'esri/tasks/IdentifyTask',
-        'esri/tasks/support/IdentifyParameters'
+        'esri/tasks/support/IdentifyParameters',
+        'esri/tasks/QueryTask',
+        'esri/tasks/support/Query'
       ]);
 
       const customExtentAndSR = Extent(parseFloat(this._extentArray[0]), parseFloat(this._extentArray[1]), parseFloat(this._extentArray[2]), parseFloat(this._extentArray[3]), SpatialReference({ "wkid": this._spatialReference }));
@@ -144,24 +147,42 @@ export class EsriMapComponent implements OnInit {
         // Set the geometry to the location of the view click
         params.geometry = event.mapPoint;
         params.mapExtent = mapView.extent;
-
-
         // This function returns a promise that resolves to an array of features
         // A custom popupTemplate is set for each feature based on the layer it
         // originates from
         identifyTask.execute(params).then(function (response) {
-
           var results = response.results;
           return results.map(function (result) {
             return response.results[0].feature;
-
           });
-        }); // Send the array of features to showPopup()
+        });
+      };
+
+      let getRandomInt = function (max) {
+        return Math.floor(Math.random() * Math.floor(max));
       }
+
+      let executeQueryTask = function () {
+        var queryTask = new QueryTask({
+          url: this._pipeLayer
+        });
+        var query = new Query();
+        query.returnGeometry = true;
+        query.outFields = ["*"];
+        query.where = "1=1";  // Return all cities with a population greater than 1 million
+        // When resolved, returns features and graphics that satisfy the query.
+        queryTask.execute(query).then(function (results) {
+          var attr = results.features[getRandomInt(1000)].attributes;
+          this.queryPipesResponse.emit("the selected " + attr.facilityid + " pipe has length :" + attr.pipe_length);
+        }.bind(this));
+      }.bind(this);
+
 
       mapView.when(() => {
         // executeIdentifyTask() is called each time the view is clicked
         mapView.on("click", executeIdentifyTask);
+        mapView.on("click", executeQueryTask);
+        //    mapView.on("click", );
         // Create identify task for the specified map service
         identifyTask = new IdentifyTask(this._gisLayer);
         // Set the parameters for the Identify
@@ -171,6 +192,8 @@ export class EsriMapComponent implements OnInit {
         params.layerOption = "all";
         params.width = mapView.width;
         params.height = mapView.height;
+
+
         this.mapLoaded.emit(true);
       });
     } catch (error) {
