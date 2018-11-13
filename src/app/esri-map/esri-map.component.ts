@@ -130,7 +130,6 @@ export class EsriMapComponent implements OnInit {
 
       const map: esri.Map = new EsriMap(mapProperties);
 
-
       // Set type of map view
       const mapViewProperties: esri.MapViewProperties = {
         container: this.mapViewEl.nativeElement,

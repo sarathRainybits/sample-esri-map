@@ -1,6 +1,6 @@
 /* import the required JSAPI css */
 @import 'https://js.arcgis.com/4.9/esri/css/main.css';
 .esri-view {
-  height:600px;
-  width: 800px;
+  height:300px;
+  width: 400px;
 }
