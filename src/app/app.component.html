@@ -1,57 +1,59 @@
-<table  style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
-  <tr >
-    <td>
-      <div style="border: 2px solid rgb(97, 197, 228);">
-       &nbsp; 1. click on the map to query a random pipe (Query Task)
-        <app-esri-map 
-        [pipeLayer]="pipeLayer" 
-        [extentArray]="extentArray" 
-        [spatialReference]="spatialReference"
-        [center]="mapCenter" 
-        [basemap]="basemapType" 
-        [zoom]="mapZoomLevel" 
-        (mapLoaded)="mapLoadedEvent($event)"
-        (queryPipesResponse)="queryPipesResponse($event)">
-        </app-esri-map>
-      </div>
-    </td>
-    <td>
-        <div style="border: 2px solid  rgb(97, 197, 228);">
-            &nbsp; 2. click on the cross icon to get details (Identify Task)
-          <app-esri-map [gisLayer]="gisLayer" [extentArray]="extentArray" [spatialReference]="spatialReference" [center]="mapCenter"
-            [basemap]="basemapType" [zoom]="mapZoomLevel" (mapLoaded)="mapLoadedEvent($event)" (queryPipesResponse)="queryPipesResponse($event)">
-          </app-esri-map>
-        </div>
-      </td>
-      <td>
-          <div style="border: 2px solid  rgb(97, 197, 228);">
-              &nbsp; 3.  just a satellite map
-          <app-esri-map 
-            [basemap]="'satellite'" 
-            [zoom]="1" >
-          </app-esri-map>
-          </div>
-        </td>
-  <tr>
-    <td><button (click)="viewDetails = !viewDetails"><span *ngIf="!viewDetails">show</span> <span *ngIf="viewDetails">hide</span>
-        details</button></td>
-  </tr>
-  <tr *ngIf="viewDetails">
-    <td>
-      <p >
-        API Reference : <a target="_blank" href="https://developers.arcgis.com/javascript/latest/api-reference/index.html">click
-          here</a>
-        <br>
-        Loader : <a target="_blank" href="https://github.com/Esri/esri-loader">click here</a>
-        <br>
-        CSS : <a target="_blank" href="https://js.arcgis.com/4.9/esri/css/main.css">click here</a>
-        <br>
-        Angular CLI Sample : <a target="_blank" href="https://github.com/Esri/angular-cli-esri-map">click here</a>
-        <br>
-        sample-esri-map source code : <a target="_blank" href="https://github.com/sarathRainybits/sample-esri-map">click
-          here</a>
-      </p>
-    </td>
-
-  </tr>
-</table>
+<div class="container">
+  <div style="border: 2px solid rgb(59, 59, 59);">
+    &nbsp; 1. click on the map to query a random pipe (Query Task)
+    <app-esri-map 
+    [pipeLayer]="pipeLayer" 
+    [extentArray]="extentArray" 
+    [spatialReference]="spatialReference" 
+    [center]="mapCenter"
+    [basemap]="basemapType" 
+    [zoom]="mapZoomLevel" 
+    (mapLoaded)="mapLoadedEvent($event)" 
+    (queryPipesResponse)="queryPipesResponse($event)">
+    </app-esri-map>
+  </div>
+  <div style="border: 2px solid rgb(59, 59, 59);">
+    &nbsp; 2. click on the cross icon to identify event (Identify Task)
+    <app-esri-map 
+    [gisLayer]="gisLayer" 
+    [extentArray]="extentArray" 
+    [spatialReference]="spatialReference" 
+    [center]="mapCenter"
+    [basemap]="basemapType" 
+    [zoom]="mapZoomLevel" 
+    (mapLoaded)="mapLoadedEvent($event)" 
+    (queryPipesResponse)="queryPipesResponse($event)">
+    </app-esri-map>
+  </div>
+  <div style="border: 2px solid rgb(59, 59, 59);">
+    &nbsp; 3. just a satellite map
+    <app-esri-map 
+    [basemap]="'satellite'" 
+    [zoom]="1">
+    </app-esri-map>
+  </div>
+</div>
+<div>
+  <br>
+    <div>
+      <button (click)="viewDetails = !viewDetails">
+        <span *ngIf="!viewDetails">show</span>
+        <span *ngIf="viewDetails">hide</span>
+      details</button>
+    </div>
+  <div *ngIf="viewDetails">
+    <p>
+      API Reference : <a target="_blank" href="https://developers.arcgis.com/javascript/latest/api-reference/index.html">click
+        here</a>
+      <br>
+      Loader : <a target="_blank" href="https://github.com/Esri/esri-loader">click here</a>
+      <br>
+      CSS : <a target="_blank" href="https://js.arcgis.com/4.9/esri/css/main.css">click here</a>
+      <br>
+      Angular CLI Sample : <a target="_blank" href="https://github.com/Esri/angular-cli-esri-map">click here</a>
+      <br>
+      sample-esri-map source code : <a target="_blank" href="https://github.com/sarathRainybits/sample-esri-map">click
+        here</a>
+    </p>
+  </div>
+</div>

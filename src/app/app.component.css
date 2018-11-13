@@ -1,1 +1,8 @@
 @import 'https://js.arcgis.com/4.9/esri/css/main.css';
+
+.container {
+    display: flex;
+  }
+  .container > div {
+    flex: 1; /*grow*/
+  }
