@@ -36,11 +36,7 @@
 <div>
   <br>
     <div>
-      <button (click)="viewDetails = !viewDetails">
-        <span *ngIf="!viewDetails">show</span>
-        <span *ngIf="viewDetails">hide</span>
-      details</button>
-    </div>
+
   <div *ngIf="viewDetails">
     <p>
       API Reference : <a target="_blank" href="https://developers.arcgis.com/javascript/latest/api-reference/index.html">click
@@ -55,5 +51,10 @@
       sample-esri-map source code : <a target="_blank" href="https://github.com/sarathRainybits/sample-esri-map">click
         here</a>
     </p>
+  </div>
+  <button (click)="viewDetails = !viewDetails">
+      <span *ngIf="!viewDetails">show</span>
+      <span *ngIf="viewDetails">hide</span>
+    details</button>
   </div>
 </div>
