@@ -1,29 +1,44 @@
-<table style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
-  <tr>
+<table  style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
+  <tr >
     <td>
-      <div>
-        1. click on the map to query a random pipe (Query Task)
-        <app-esri-map [pipeLayer]="pipeLayer" [extentArray]="extentArray" [spatialReference]="spatialReference"
-          [center]="mapCenter" [basemap]="basemapType" [zoom]="mapZoomLevel" (mapLoaded)="mapLoadedEvent($event)"
-          (queryPipesResponse)="queryPipesResponse($event)">
+      <div style="border: 2px solid rgb(97, 197, 228);">
+       &nbsp; 1. click on the map to query a random pipe (Query Task)
+        <app-esri-map 
+        [pipeLayer]="pipeLayer" 
+        [extentArray]="extentArray" 
+        [spatialReference]="spatialReference"
+        [center]="mapCenter" 
+        [basemap]="basemapType" 
+        [zoom]="mapZoomLevel" 
+        (mapLoaded)="mapLoadedEvent($event)"
+        (queryPipesResponse)="queryPipesResponse($event)">
         </app-esri-map>
       </div>
     </td>
     <td>
-      <div>
-        2. click on the outage icon to get description (Identify Task)
-        <app-esri-map [gisLayer]="gisLayer" [extentArray]="extentArray" [spatialReference]="spatialReference" [center]="mapCenter"
-          [basemap]="basemapType" [zoom]="mapZoomLevel" (mapLoaded)="mapLoadedEvent($event)" (queryPipesResponse)="queryPipesResponse($event)">
-        </app-esri-map>
-      </div>
-    </td>
+        <div style="border: 2px solid  rgb(97, 197, 228);">
+            &nbsp; 2. click on the cross icon to get details (Identify Task)
+          <app-esri-map [gisLayer]="gisLayer" [extentArray]="extentArray" [spatialReference]="spatialReference" [center]="mapCenter"
+            [basemap]="basemapType" [zoom]="mapZoomLevel" (mapLoaded)="mapLoadedEvent($event)" (queryPipesResponse)="queryPipesResponse($event)">
+          </app-esri-map>
+        </div>
+      </td>
+      <td>
+          <div style="border: 2px solid  rgb(97, 197, 228);">
+              &nbsp; 3.  just a satellite map
+          <app-esri-map 
+            [basemap]="'satellite'" 
+            [zoom]="1" >
+          </app-esri-map>
+          </div>
+        </td>
   <tr>
-    <td><span (click)="viewDetails = !viewDetails">click here to <span *ngIf="!viewDetails">show</span> <span *ngIf="viewDetails">hide</span>
-        details</span></td>
+    <td><button (click)="viewDetails = !viewDetails"><span *ngIf="!viewDetails">show</span> <span *ngIf="viewDetails">hide</span>
+        details</button></td>
   </tr>
-  <tr>
+  <tr *ngIf="viewDetails">
     <td>
-      <p *ngIf="viewDetails">
+      <p >
         API Reference : <a target="_blank" href="https://developers.arcgis.com/javascript/latest/api-reference/index.html">click
           here</a>
         <br>
